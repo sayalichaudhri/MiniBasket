@@ -24,7 +24,7 @@ public class TestRegression {
 		Constants.driver.manage().timeouts().implicitlyWait(3000,TimeUnit.SECONDS);
 		Signinpage sign=PageFactory.initElements(Constants.driver,Signinpage.class);
 		//sign.clicksignin();
-		//sign.enteremailorphone("chaudhari.ujjvala@gmail.com");
+		//sign.enteremailorphone("chaudhari.ujjvala@	gmail.com");
 		//sign.enterpasswordTb("Abc@123");
 		//sign.Login();
 		Assert.assertTrue(Constants.driver.getTitle().equals("Etsy - Shop for handmade, vintage, custom, and unique gifts for everyone"));
@@ -37,7 +37,6 @@ public class TestRegression {
 		Homepage home=PageFactory.initElements(Constants.driver,Homepage.class);
 		home.Homepage_jewaller();
 		System.out.println("mouse move on jewellery");
-		Keyword.jewellerypage();
 		home.Homepage_Jewellery_bag_click();
 		System.out.println("Click On Bag(Submenu dispay)");
 		home.Homepage_bag();
@@ -46,6 +45,8 @@ public class TestRegression {
 		System.out.println("Click On Bag(Submenu dispay--Select Handbag--Select purse and Open purse)");
 	    home.Homepage_purse_more_colour();
 		System.out.println("Click On Bag(Submenu dispay--Select Handbag--Select purse and go to Cart)");
+		Keyword.scrollByDown();
+		home.homepage_Purse_Add_To_Cart();
 	    System.out.println("Purse Add to Cart");
 	}
 }

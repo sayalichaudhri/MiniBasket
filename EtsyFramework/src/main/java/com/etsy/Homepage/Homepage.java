@@ -1,10 +1,5 @@
 package com.etsy.Homepage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -31,8 +26,13 @@ public class Homepage {
 	@FindBy(xpath="/html/body/div[6]/div/div[1]/div/div[3]/div[2]/div[2]/div[1]/div/ul/li[2]")
 	private WebElement morecolour;
 	
-	@FindBy(xpath="//button[@class='wt-btn wt-btn--filled wt-width-full']")
+	@FindBy(xpath="//div[contains(text(),'Add to basket')]")
 	private WebElement addtocart;
+	
+	
+	
+	
+	
 	//Homepage Jewellery And Accessories
 	public void Homepage_jewaller() 
 	{
@@ -74,11 +74,9 @@ public class Homepage {
 		js.executeScript("window.scrollBy(0,300)");
 		morecolour.click();
 	}
-	/*public void Homepage_purse_Add_to_Cart() 
+	public void homepage_Purse_Add_To_Cart() 
 	{
-		JavascriptExecutor js=(JavascriptExecutor) Constants.driver;
-		js.executeScript("window.scrollBy(0,300)");
 	    addtocart.click();
 		
-	}*/
+	}
 }

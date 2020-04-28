@@ -5,17 +5,14 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,6 +24,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
@@ -37,20 +35,23 @@ public class Keyword {
 
 		switch (browserName) {
 		case "Chrome":
-			System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		    Constants.driver = new ChromeDriver();
+			//WebDriverManager.chromedriver().setup();
+			System.setProperty("webdriver.chrome.driver","D:\\All Driver.exe files\\New folder\\chromedriver_win32\\chromedriver.exe");
+
+			Constants.driver = new ChromeDriver();
 			Constants.driver.manage().window().maximize();
 			break;
 
 		case "Firefox":
-			System.setProperty("webdriver.Firefox.driver","E:\\geckodriver-v0.26.0-win64\\geckodriver.exe");
+			System.setProperty("webdriver.chrome.driver",
+					"D:\\eclipse programs\\GroomautoFramework\\Drivers\\geckodriver.exe");
 			Constants.driver = new FirefoxDriver();
 			Constants.driver.manage().window().maximize();
 			break;
 		/*
 		 * case "htmlUnit": System.setProperty("webdriver.chrome.driver",
 		 * "D:\\All Driver.exe files\\chromedriver_win32\\chromedriver.exe");
-		 * constants.driver = new HtmlUnitDriver(); break;
+		 * Constants.driver = new HtmlUnitDriver(); break;
 		 */
 		default:
 			System.out.println("invalid browser name" + browserName);
@@ -112,7 +113,23 @@ public class Keyword {
 		Constants.select.selectByVisibleText(selectText);
 
 	}
+	public static void selectDropDownListitem(WebElement element) {
+		Select select = new Select(element);
+
+		List<WebElement> optionsList = select.getOptions();
+		int sizelist=optionsList.size();
+		for (int i = 0; i < sizelist; i++) {
+			 String value= select.getOptions().get(i).getText();
+			 
+			 System.out.println(value);
+			 if(i>=3)
+			 {
+				 select.selectByIndex(i);
+			 }
 	
+		}
+
+	}
 	public static void handleAlertWithAccept() {
 		Constants.driver.switchTo().alert().accept();
 
@@ -176,10 +193,10 @@ public class Keyword {
 
 	public static void applyExplicitWait(WebElement element) {
 
-		Constants.wait.withTimeout(1000, TimeUnit.SECONDS);
+		Constants.wait.withTimeout(2000, TimeUnit.SECONDS);
 		Constants.wait.ignoring(NoSuchElementException.class, ElementClickInterceptedException.class);
 		Constants.wait.pollingEvery(200, TimeUnit.SECONDS);
-		Constants.wait.until(ExpectedConditions.elementToBeClickable(element));
+		Constants.wait.until(ExpectedConditions.elementToBeSelected(element));
 	}
 
 	public static void applySleep() throws InterruptedException {
@@ -226,9 +243,10 @@ public class Keyword {
 
 	}
 
-	public static void mouesHover(WebElement element) {
+	public static void mouseHover(WebElement element) {
 		Constants.action = new Actions(Constants.driver);
-		Constants.action.moveToElement(element).perform();
+		Constants.action.moveToElement(element);
+		Constants.action.build().perform();
 	}
 	
 	public static void doubleClick() {
@@ -245,7 +263,7 @@ public class Keyword {
 	
 	public static void scrollByDown() {
 		JavascriptExecutor js = (JavascriptExecutor) Constants.driver;
-		js.executeScript("window.scrollBy(0,2000)");
+		js.executeScript("window.scrollBy(0,300)");
 	}
 	
 	public static void handlePopUp() {
@@ -254,28 +272,6 @@ public class Keyword {
 		Constants.options.addArguments("--disable-notifications");
 	}
 	
-	public static void jewellerypage() {
-		try
-	    {
-		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(new FileReader("E:\\JavaProgram\\EtsyFramework\\Input\\Jewelleryitem.json"));
-		JSONObject uj=(JSONObject)obj;
-		JSONArray unit = (JSONArray)uj.get("Bags & Purses");
-		//System.out.println(unit+"\n");
-		 for(int i=0;i<unit.size();i++) 
-		 {
-			 System.out.println(unit.get(i));
-		 }
-		 Thread.sleep(3000);
-	     //Assert.assertTrue(Keyword.verifyTextPresent("Browser"));
-	     System.out.println("Assert true");
-	   }
-	   catch (Exception e)
-	   {
-	   e.printStackTrace();	
-	   }
-	   }
-
 	public static void uploadFile() {
 		
 

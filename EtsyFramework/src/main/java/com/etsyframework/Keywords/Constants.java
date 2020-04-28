@@ -6,6 +6,7 @@ import java.awt.Robot;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -22,4 +23,5 @@ public class Constants {
 	public static FluentWait wait;
 	public static Robot robo;
 	public static ChromeOptions options;
+	public static Logger logger;
 }
