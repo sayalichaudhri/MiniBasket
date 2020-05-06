@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="com.etsyframewok.Tests.VerifyNavBarItems">
+        <methods>
+          <include name="launchBrowser"/>
+        </methods>
+      </class> <!-- com.etsyframewok.Tests.VerifyNavBarItems -->
+      <class name="com.etsyframewok.Tests.LoginPageTest">
+        <methods>
+          <include name="login_Page_Test"/>
+        </methods>
+      </class> <!-- com.etsyframewok.Tests.LoginPageTest -->
+      <class name="com.etsyframewok.Tests.AddToCartTest">
+        <methods>
+          <include name="launchBrowser"/>
+          <include name="add_To_Cart_Product"/>
+        </methods>
+      </class> <!-- com.etsyframewok.Tests.AddToCartTest -->
+      <class name="com.etsyframewok.Tests.VerifyLogo">
+        <methods>
+          <include name="etsyVerifyLogo"/>
+          <include name="launchBrowser"/>
+        </methods>
+      </class> <!-- com.etsyframewok.Tests.VerifyLogo -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
